@@ -1,0 +1,9 @@
+h1 {
+  background-color: black;
+  color: red;
+}
+
+#map {
+  width:600px;
+  height:600px;
+}
