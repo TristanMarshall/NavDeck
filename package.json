@@ -12,6 +12,7 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
+    "nodemon": "^1.4.1",
     "serve-favicon": "~2.3.0"
   },
   "description": "##### The primary purpose of NavDeck is to supply the user with a live feed of useful data that may come in handy while out at sea.",
