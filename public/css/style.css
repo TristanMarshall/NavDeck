@@ -1,7 +1,35 @@
 body, html {
-  height: 100%;
+  height: 40%;
   width: 100%;
   background-color:rgb(206, 206, 206);
+}
+
+.loadDiv {
+  width: 105%;
+  height: 149%;
+  background-color: rgb(165, 165, 165);
+  margin-top: -5%;
+  margin-left: -2%;
+  margin-bottom: -78%;
+  position: absolute;
+  z-index: 10000;
+}
+
+.loadh1 {
+  font-size: 5vw;
+  color: rgb(68, 68, 68);
+  margin-left: 38%;
+  margin-bottom: 0;
+  margin-top: 20%;
+  font-family: 'Julius Sans One';
+}
+
+.load {
+  width: 10%;
+  height: auto;
+  margin-top: 44%;
+  margin-left: -24%;
+
 }
 
 .index{
@@ -107,4 +135,33 @@ hr {
   font-family: "orbitron";
   font-size: 2vw;
   margin-left: 5%;
+}
+
+@media (max-width:600px) {
+  body {
+    transform: rotate(90deg);
+    height: 100%;
+    width: 100%;
+  }
+
+  .index {
+    width: 123%;
+    height: 52%;
+    background-color: rgb(165, 165, 165);
+    margin-left: -16.2%;
+    margin-top: 5%;
+    padding-top: 2.5%;
+    margin-top: 2.5%;
+    border-radius: 3%;
+    border: 1vw solid rgb(255, 255, 255)
+  }
+
+  .targ {
+    width: 85.8%;
+    margin-top: -134.3%;
+    height: auto;
+    margin-left: 4.5%;
+    position: absolute;
+  }
+
 }

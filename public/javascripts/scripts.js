@@ -71,68 +71,83 @@ function direction(data) {
   };
   return direct;
 };
-////////////////////////////////////////////////////////////////////////////////
-//                G O O G L E M A P   G E O L O C A T I O N
-////////////////////////////////////////////////////////////////////////////////
-
-var geo = function() {
-  var latitude, longitude;
-  navigator.geolocation.watchPosition(function(position) {
-  app.latitude = parseFloat(position.coords.latitude.toFixed(2));
-  app.longitude = parseFloat(position.coords.longitude.toFixed(2));
-    console.log(app.latitude, app.longitude);
-        currentLatOne.push(app.latitude);
-        currentLngOne.push(app.longitude);
-
-  });
-
-
-};
-
-geo();
-
 
 ////////////////////////////////////////////////////////////////////////////////
 //                             G O O G L E M A P
 ////////////////////////////////////////////////////////////////////////////////
 
-function initMap() {
-  var myLatLng = {lat: currentLatOne[0], lng: currentLngOne[0]};
+app.initMap = function(lat, long) {
+  console.log('app.initMap started');
+  var myLatLng = {lat: lat, lng: long};
   console.log(myLatLng);
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    setCenter: myLatLng
+    zoom: 15,
+    center: myLatLng
   });
-}
-google.maps.event.addDomListener(window, 'load', initMap);
+  google.maps.event.addDomListener(window, 'load', app.initMap);
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+//                G O O G L E M A P   G E O L O C A T I O N
+////////////////////////////////////////////////////////////////////////////////
+
+app.geo = function(next) {
+  console.log('app.geo started');
+  var latitude, longitude;
+
+  function success(pos) {
+    var crd = pos.coords;
+    app.lat = parseFloat(crd.latitude.toFixed(8));
+    app.long = parseFloat(crd.longitude.toFixed(8));
+    console.log(crd);
+    next(parseFloat(crd.latitude.toFixed(8)), parseFloat(crd.longitude.toFixed(8)));
+  }
+
+  function fail(error) {
+    console.log("an error has occured: " + error);
+  }
+
+  var dt = navigator.geolocation.getCurrentPosition(success, fail, { timeout: 10000 });
+
+  // navigator.geolocation.watchPosition(function(position) {
+  // app.latitude = parseFloat(position.coords.latitude.toFixed(2));
+  // app.longitude = parseFloat(position.coords.longitude.toFixed(2));
+  //   console.log(app.latitude, app.longitude);
+  //       currentLatOne.push(app.latitude);
+  //       currentLngOne.push(app.longitude);
+  // });
+  // next();
+
+};
+app.geo(app.initMap);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                        W E A T H E R  A P I
 ////////////////////////////////////////////////////////////////////////////////
+setTimeout(function(){
 
-var getRequest = {
+app.getRequest = {
 
   type:'get',
-  url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + currentLatOne[0] + '&lon=' + currentLngOne[0],
+  url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + app.lat + '&lon=' + app.long,
   dataType: 'json',
   success: function(data) {
       $(".weatherStats").append("<br><hr>" + "<span class='current'>TEMPERATURE : </span>" +  Math.round(data.main.temp * 9/5 - 459.67) + " degrees" + "<br><br>");
       $(".weatherStats").append("<hr><span class='current'>Wind Speed : </span>"  +  Math.round(data.wind.speed * .8689762) + " knots" + "<br><br>");
       $(".weatherStats").append("<hr><span class='current'>Wind Direction : </span>" +  direction(data.wind.deg) + "<br><br>");
-      $(".weatherStats").append("<hr><span class='current'>City : </span>" +  data.name + "<br><br><hr>");
-
+      $(".weatherStats").append("<hr><span class='current'>Location : </span>" +  data.name + "<br><br><hr>");
 
       console.log(data);
-
-
   },
   error: function(error) {
     console.log(error);
   }
 };
 
-$.ajax(getRequest);
+$.ajax(app.getRequest);
 
+}, 5000);
 ////////////////////////////////////////////////////////////////////////////////
 //                    J Q U E R Y  A N I M A T I O N S
 ////////////////////////////////////////////////////////////////////////////////
@@ -144,6 +159,14 @@ $(function () {
     }, 1000);
 });
 
+$(function () {
+    var $element = $('.loadh1');
+    setInterval(function () {
+        $element.fadeIn(700).delay(100).fadeOut(500).fadeIn(700);
+    }, 1000);
+});
+
+$('.loadDiv').delay(5000).fadeOut(1000);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                E N D  O F  D O C U M E N T . R E A D Y
