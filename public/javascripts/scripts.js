@@ -69,16 +69,48 @@ function direction(data) {
 ////////////////////////////////////////////////////////////////////////////////
 //                             G O O G L E M A P
 ////////////////////////////////////////////////////////////////////////////////
+
+
 app.initMap = function(lat, long) {
+
+  var styles = [
+     {
+       stylers: [
+         { hue: "#16FCE5" },
+         { saturation: -20 }
+       ]
+     },{
+       featureType: "road",
+       elementType: "geometry",
+       stylers: [
+         { lightness: 100 },
+         { visibility: "simplified" }
+       ]
+     },{
+       featureType: "road",
+       elementType: "labels",
+       stylers: [
+         { visibility: "off" }
+       ]
+     }
+   ];
+
   console.log('app.initMap started');
   var myLatLng = {lat: lat, lng: long};
   console.log(myLatLng);
+  var styledMap = new google.maps.StyledMapType(styles,
+      {name: "Styled Map"});
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: myLatLng,
+    mapTypeControlOptions: {
+     mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+   }
 
   });
   google.maps.event.addDomListener(window, 'load', app.initMap);
+  map.mapTypes.set('map_style', styledMap);
+  map.setMapTypeId('map_style');
 };
 
 ////////////////////////////////////////////////////////////////////////////////

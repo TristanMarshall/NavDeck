@@ -1,14 +1,14 @@
 body, html {
   height: auto;
   width: 100%;
-  background-color: #E5E5E5;
+  background-color:white;
 }
 
 .loadDiv {
   width: 105%;
   height: 149%;
   background-color: #BACFF3;
-  margin-top: -5%;
+  margin-top: -8%;
   margin-left: -2%;
   margin-bottom: -78%;
   position: absolute;
@@ -21,7 +21,7 @@ body, html {
   margin-left: 38%;
   margin-bottom: 0;
   margin-top: 20%;
-  font-family: 'Julius Sans One';
+  font-family: 'Orbitron';
 }
 
 .load {
@@ -34,39 +34,39 @@ body, html {
 .index{
   width: 80%;
   height: auto;
-  background-color: #BACFF3;
+  background-color: rgba(15, 70, 65, 0.47);
   margin-left: 7.8%;
   margin-top: 5%;
   padding-top: 2.5%;
-  margin-top: 4.5%;
+  margin-top: 7.5%;
   border-radius: -1%;
-  border: .5vw solid rgb(255, 255, 255);
+  border: .5vw solid black;
 }
 
 .titleDiv{
   position: absolute;
   margin-top: -0.7%;
-  margin-left: 58.5%;
+  margin-left: 56.5%;
 }
 
 h1 {
   position: absolute;
-  font-size: 4vw;
+  font-size: 3.7vw;
   color: rgb(68, 68, 68);
   margin-left: 56.8%;
   margin-bottom: -44.6%;
   margin-top: 12%;
-  font-family: 'Julius Sans One';
+  font-family: 'Orbitron';
 }
 
 #map {
   width: 33.1%;
   height: 0;
   margin-left: 13.3%;
-  margin-top: -43%;
+  margin-top: -47.1%;
   padding-bottom: 33.1%;
   border-radius: 50%;
-  border: solid rgb(0, 0, 0) 0.2vw;
+  border: solid black 0.2vw;
   position: relative;
   z-index: 1;
 }
@@ -75,7 +75,8 @@ h1 {
   width: 80%;
   height: 0%;
   margin-left: 4%;
-  margin-top: 25%;
+  margin-top: 17%;
+  margin-bottom: 4%;
   position: relative;
 }
 
@@ -95,7 +96,7 @@ h1 {
   height: auto;
   width: 25.4%;
   background-color: rgba(165, 165, 165, .05);
-  margin-top: 40%;
+  margin-top: 32%;
   margin-bottom: -60.7%;
   margin-left: 56%;
   position: absolute;
@@ -110,6 +111,7 @@ h1 {
   margin-left: 4%;
   position: absolute;
   z-index: 1;
+  display: none;
 }
 
 .current {
@@ -141,12 +143,12 @@ hr {
   width: 19%;
   margin-left: 61.3%;
   position: absolute;
-  margin-top: -8%;
+  margin-top: -9%;
   font-size: 1.4vw;
   padding-top: 1%;
   padding-bottom: 1%;
-  background-color: #D7E3F7;
-  border: 3px solid #BACFF3;
+  background-color: #C2E4E1;
+  border: 3px solid black;
 }
 
 :hover.butt {
@@ -154,12 +156,12 @@ hr {
   width: 19%;
   margin-left: 61.3%;
   position: absolute;
-  margin-top: -8%;
+  margin-top: -9%;
   font-size: 1.4vw;
   padding-top: 1%;
   padding-bottom: 1%;
-  background-color: #BACFF3;
-  border: 3px solid #BACFF3;
+  background-color: white;
+  border: 3px solid #C2E4E1;
 }
 
 @media (max-width:600px) {
