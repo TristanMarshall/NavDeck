@@ -72,29 +72,143 @@ function direction(data) {
 
 
 app.initMap = function(lat, long) {
-
   var styles = [
-     {
-       stylers: [
-         { hue: "#16FCE5" },
-         { saturation: -20 }
-       ]
-     },{
-       featureType: "road",
-       elementType: "geometry",
-       stylers: [
-         { lightness: 100 },
-         { visibility: "simplified" }
-       ]
-     },{
-       featureType: "road",
-       elementType: "labels",
-       stylers: [
-         { visibility: "off" }
-       ]
-     }
-   ];
-
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 13
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#144b53"
+            },
+            {
+                "lightness": 14
+            },
+            {
+                "weight": 1.4
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#08304b"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#0c4152"
+            },
+            {
+                "lightness": 5
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b434f"
+            },
+            {
+                "lightness": 25
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b3d51"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#146474"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#021019"
+            }
+        ]
+    }
+]
   console.log('app.initMap started');
   var myLatLng = {lat: lat, lng: long};
   console.log(myLatLng);
@@ -116,6 +230,9 @@ app.initMap = function(lat, long) {
 ////////////////////////////////////////////////////////////////////////////////
 //                     G O O G L E  E L E V A T I O N
 ////////////////////////////////////////////////////////////////////////////////
+///////// GOOGLE ELEVATION MUST BE RENDERED THROUGH BACKEND OF APP /////////////
+//////////////////// BELOW CODE FOR FUTURE REFERENCE ONLY //////////////////////
+
 // app.log = function(data) {
 //   console.log(data);
 // }
@@ -175,6 +292,7 @@ app.geo(app.initMap);
 ////////////////////////////////////////////////////////////////////////////////
 setTimeout(function(){
 
+///// I F  D A T A  T H E  S A M E  D O N T  U P D A T E  F U N C T I O N //////
   // var oldData = null
   // function hasNewData(newData) {
   //   if (oldData) {
@@ -216,31 +334,39 @@ setTimeout(function(){
 ////////////////////////////////////////////////////////////////////////////////
 //                    J Q U E R Y  A N I M A T I O N S
 ////////////////////////////////////////////////////////////////////////////////
-$(function () {
-    var $element = $('.targ');
-    setInterval(function () {
-        $element.fadeIn(700).delay(100).fadeOut(500).fadeIn(700);
-    }, 1000);
-});
 
+///////////////// T A R G E T  P U L S E  F U N C T I O N //////////////////////
+
+// $(function () {
+//     var $element = $('.targ');
+//     setInterval(function () {
+//         $element.fadeIn(700).delay(200).fadeOut(900).fadeIn(500);
+//     }, 1000);
+// });
+
+///////////////// L O A D I N G  D I V  N A V D E C K //////////////////////////
 $(function () {
     var $element = $('.loadh1');
+    var $element2 = $('.hr1');
+    var $element3 = $('.hr2');
     setInterval(function () {
         $element.fadeIn(700).delay(100).fadeOut(500).fadeIn(700);
+        $element2.fadeIn(350).delay(100).fadeOut(500).fadeIn(700);
+        $element3.fadeIn(350).delay(100).fadeOut(500).fadeIn(700);
     }, 1000);
 });
 
 $('.loadDiv').delay(5000).fadeOut(1000);
-// 11000
+
+/////////////////// D A T A  R E L O A D  B U T T O N //////////////////////////
 
 $('.butt').on('click', function(){
   console.log('Button is working');
-  $(".weatherStats").delay(100).empty();
-
+  $(".weatherStats").empty();
   app.geo(app.initMap);
   $.ajax(app.getRequest);
-
 });
+
 ////////////////////////////////////////////////////////////////////////////////
 //                E N D  O F  D O C U M E N T . R E A D Y
 ////////////////////////////////////////////////////////////////////////////////
