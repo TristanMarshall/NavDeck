@@ -337,12 +337,12 @@ setTimeout(function(){
 
 ///////////////// T A R G E T  P U L S E  F U N C T I O N //////////////////////
 
-// $(function () {
-//     var $element = $('.targ');
-//     setInterval(function () {
-//         $element.fadeIn(700).delay(200).fadeOut(900).fadeIn(500);
-//     }, 1000);
-// });
+$(function () {
+    var $element = $('.targ');
+    setInterval(function () {
+        $element.fadeIn(700).delay(200).fadeOut(900).fadeIn(500);
+    }, 1000);
+});
 
 ///////////////// L O A D I N G  D I V  N A V D E C K //////////////////////////
 $(function () {
